@@ -43,18 +43,56 @@ const convertToRgb = hex => {
   return rgbcolor;
 }
 
+const convertToHex = rgb => {
+  if (!rgb.startsWith('rgb') || !rgb.includes(',')) {
+    return 'Invalid Color';
+  }
+
+  rgb = rgb.replace('rgba', '').replace('rgb', '').replace('(', '').replace(')', '');
+  const colors = rgb.split(',');
+
+  if (colors.length < 3) {
+    return 'Invalid Color';
+  }
+
+  let r, g, b, op = '';
+  r = (+colors[0]).toString(16).padStart(2, '0');
+  g = (+colors[1]).toString(16).padStart(2, '0');
+  b = (+colors[2]).toString(16).padStart(2, '0');
+  if (colors.length === 4) {
+    op = Math.ceil((+colors[3]*255)).toString(16);
+  }
+
+  return `#${r}${g}${b}${op}`;
+}
+
+const convert = color => {
+  if (typeof color !== 'string') {
+    return 'Invalid Color';
+  }
+
+  if (color.startsWith('#')) {
+    return convertToRgb(color);
+  }
+  if (color.startsWith('rgb')) {
+    return convertToHex(color);
+  }
+  return 'Invalid Color';
+}
+
 console.log("----- QUESTION 3 -----");
+
 // Valid
-console.log('#fc327d', convertToRgb('#fc327d'));
-console.log('#fbb', convertToRgb('#fbb'));
-console.log('#fbb2', convertToRgb('#fbb2'));
-console.log('#fc327d78', convertToRgb('#fc327d78'));
-// console.log(convertToRgb('rgb(234, 5, 67)'));
-// console.log(convertToRgb('rgba(4, 65, 167, 0.3)'));
+console.log('#fc327d', convert('#fc327d'));
+console.log('#fbb', convert('#fbb'));
+console.log('#fbb2', convert('#fbb2'));
+console.log('#fc327d78', convert('#fc327d78'));
+console.log('rgb(234, 5, 67)', convert('rgb(234, 5, 67)'));
+console.log('rgba(4, 65, 167, 0.3)', convert('rgba(4, 65, 167, 0.3)'));
 
 // Not valid
-console.log('#fc32d', convertToRgb('#fc32d'));
-// console.log(convertToRgb('rgb(234, 5)'));
-// console.log(convertToRgb(456));
-// console.log(convertToRgb('red'));
+console.log('#fc32d', convert('#fc32d'));
+console.log('rgb(234, 5)', convert('rgb(234, 5)'));
+console.log(456, convert(456));
+console.log('red', convert('red'));
 console.log('');
