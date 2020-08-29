@@ -1,0 +1,26 @@
+{
+  "name": "color-format-converter",
+  "version": "1.0.0",
+  "description": "A tool that converts hex colors to rgb and vice-versa.",
+  "main": "3.js",
+  "scripts": {
+    "build": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikafrancesconi/ZTM-Coding_Challenge-6.git"
+  },
+  "keywords": [
+    "css",
+    "colors",
+    "hex",
+    "rgb"
+  ],
+  "author": "Erika Francesconi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erikafrancesconi/ZTM-Coding_Challenge-6/issues"
+  },
+  "homepage": "https://github.com/erikafrancesconi/ZTM-Coding_Challenge-6#readme"
+}
